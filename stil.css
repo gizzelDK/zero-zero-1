@@ -1,0 +1,11 @@
+html {
+	background: #000;
+	color: #fff;
+}
+h1 {
+	text-align: center;
+	color: #ff69b4;
+}
+canvas {
+	background: #333;
+}
