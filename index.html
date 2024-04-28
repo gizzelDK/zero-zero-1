@@ -6,15 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>0^0 Tilnærmelse</title>
     <link rel="stylesheet" href="stil.css">
-	<script src="logik.js" defer></script>
   </head>
   <body>
-	<h1>0^0 = 1<h1>
+	<h1>0^0 = 1</h1>
 	<div class="content-container">
-		<canvas id="calc-canvas" />
+		<canvas id="calc-canvas"></canvas>
 		<form id="base-nums">
-		
+			<label id="label-num-1" for="input-num-1">input base number</label>
+			<input type="number" id="input-num-1" />
 		</form>
 	</div>
+	<script src="chart.js" defer></script>
+	<script src="logik.js" defer></script>
   </body>
 </html>
