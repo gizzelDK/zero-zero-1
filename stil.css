@@ -2,12 +2,24 @@ html {
 	background: #000;
 	color: #fff;
 }
+.content-container {
+	display: grid;
+	grid-template-columns: 810px 410px 310px;
+    grid-gap: 5px;
+}
 h1 {
 	text-align: center;
 	color: #ff69b4;
 }
 canvas {
-	height: 1200px;
+	height: 600px;
 	width: 800px;
 	background: #333;
+}
+#results {
+	background: #777;
+	grid-area: results;
+}
+form {
+	width: 400px;
 }

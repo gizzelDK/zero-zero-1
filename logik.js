@@ -1,13 +1,32 @@
 docReady(function() {
+	window.form = document.getElementById('base-nums')
     // DOM is loaded and ready for manipulation here
-    const form = document.getElementById('base-nums')
+    //const form = window.form
+	const chartCanvas = document.getElementById('calc-canvas')
+	const resultContainer = document.getElementById('results')
+	const resultsArr = []
+	window.resultsArr = resultsArr
+	
     form.style.background = '#555'
     form.addEventListener('submit', (event)=>{
         event.preventDefault()
+		// on resubmit clear results display & array
+		while (resultsArr.length)
+		{ resultsArr.pop(); }
+		resultContainer.innerHTML = ''
         const inputData = new FormData(form)
-        for(var i =0; i < inputData.entries.length -1; i++){
-            console.log('form element val: ', inputData.entries[i])
-        }
+        for (const pair of inputData.entries()) {
+			console.log(pair[0], pair[1]);
+			const numVal = (parseFloat(pair[1]) ** parseFloat(pair[1]))
+			console.log(numVal)
+			//parseFloat(yourString).toFixed(8)
+			resultsArr.push(numVal)
+			
+			const div = document.createElement("div")
+			div.innerHTML = numVal.toFixed(8)
+			resultContainer.appendChild(div)
+		}
+		const chart = new Chart(resultsArr, chartCanvas)
     })
 })
 
