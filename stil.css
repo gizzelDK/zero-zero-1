@@ -12,14 +12,13 @@ h1 {
 	color: #ff69b4;
 }
 canvas {
-	height: 600px;
-	width: 800px;
 	background: #333;
 }
 #results {
-	background: #777;
+	background: #333;
 	grid-area: results;
 }
 form {
+	background: #222;
 	width: 400px;
 }

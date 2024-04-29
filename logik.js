@@ -7,7 +7,6 @@ docReady(function() {
 	const resultsArr = []
 	window.resultsArr = resultsArr
 	
-    form.style.background = '#555'
     form.addEventListener('submit', (event)=>{
         event.preventDefault()
 		// on resubmit clear results display & array
@@ -15,10 +14,11 @@ docReady(function() {
 		{ resultsArr.pop(); }
 		resultContainer.innerHTML = ''
         const inputData = new FormData(form)
+
         for (const pair of inputData.entries()) {
-			console.log(pair[0], pair[1]);
+			//console.log(pair[0], pair[1]);
 			const numVal = (parseFloat(pair[1]) ** parseFloat(pair[1]))
-			console.log(numVal)
+			//console.log(numVal)
 			//parseFloat(yourString).toFixed(8)
 			resultsArr.push(numVal)
 			
