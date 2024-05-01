@@ -17,3 +17,7 @@ drawGrid(dataPoints, canvas, margin){
 // text bottom & text right
 }
 ```
+
+## ToDo
+
+- function parameter for graph, where you can input math function, so graph class takes variables and generates inputs, and displays results of running   the function
