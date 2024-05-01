@@ -1,37 +1,82 @@
 class Chart{
 	constructor( resultArry, canvas){
       this.canvas = canvas
-      this.canvas.height = 600
+      this.canvas.height = 1020
       this.canvas.width = 800
-		this.ctx = canvas.getContext('2d')
-      this.#drawGrid(resultArry, this.canvas, {x:0, y:0})
+	  this.ctx = canvas.getContext('2d')
+      this.#drawGrid(resultArry, {x:0, y:0})
 	}
 	
-   #drawGrid(dataPoints, canvas, margin){
-      this.ctx.clearRect(0,0, canvas.width , canvas.height);
-      const cellsWidth = Math.floor(canvas.width/ dataPoints.length)
-      for(var i = 0; i < dataPoints.length +1; i++){
-         this.ctx.lineWidth = 1
-         this.ctx.strokeStyle = 'red'
-         this.ctx.beginPath()
+   #drawGrid(dataPoints, margin){
+   const {ctx, canvas} = this
+      ctx.clearRect(0,0, canvas.width , canvas.height)
+	  ctx.lineWidth = 1
+	      // linesAcross & right side intervals
+	  var _text = 1
+	  for(let j = 20; j <= 1020; j+= 20){
+	  ctx.strokeStyle = 'rgba(80, 80, 80, 0.4)'
+		  ctx.beginPath()
+		  let x = 0
+		  let y = j
+		  ctx.moveTo(x, y)
+		  ctx.lineTo(canvas.width, y)
+		  ctx.stroke()
+		  ctx.closePath()
+		  // text
+		  this.ctx.strokeStyle = 'rgba(80, 80, 80, 1)'
+		  ctx.strokeText(`${_text.toFixed(2)}`, (canvas.width - 30), (y - 10))
+			  _text -= 0.02
+		}
+	  // Lines down & datapoint
+      const cellsWidth = Math.floor(canvas.width / dataPoints.length)
+	  var currentPoint = {x: 0, y: 0}
+	  var previousPoint = {x: 0, y: 0}
+      for(let i = 0; i <= dataPoints.length ; i++){
+		 ctx.strokeStyle = 'rgba(80, 80, 80, 0.4)'
+         ctx.beginPath()
          let x = 0
-         if (i > dataPoints.length) {
-            x = Math.floor(((i * cellsWidth)- margin.x))
-         }else{
-            x = Math.floor(((i * cellsWidth)))
-         }
+         // if (i > dataPoints.length) {
+            // x = Math.floor(((i * cellsWidth)- margin.x))
+         // }else{
+            x = Math.floor((i * cellsWidth))
+         // }
          let y = margin.y
          console.log('x and y', x, y)
-         this.ctx.moveTo(x, y)
+         ctx.moveTo(x, y)
          y = Math.floor((canvas.height - margin.y))
          console.log('x and y', x, y)
-         this.ctx.lineTo(x, y)
-         this.ctx.stroke()
-         this.ctx.closePath()
+         ctx.lineTo(x, y)
+         ctx.stroke()
+         ctx.closePath()
+	// dataPoints
+		  if(i <= dataPoints.length -1){
+			  currentPoint.x = (x + (cellsWidth / 2))
+			  currentPoint.y = ( Math.floor((canvas.height - (dataPoints[i] * 1000)- margin.y)))
+			  ctx.beginPath()
+				ctx.arc(currentPoint.x, currentPoint.y, 3, 0, 2 * Math.PI)
+				ctx.fillStyle = `rgb(255 255 255/ ${Math.floor((dataPoints[i].toFixed(2)*100) )}%)`
+				ctx.fill()
+				ctx.linewidth = 1
+				ctx.strokestyle = 'rgb(255, 255, 255/ 100%)'
+				ctx.stroke()
+				ctx.closePath()
+				//if(previousPoint.x != 0){
+					ctx.strokestyle = 'rgb(255, 255, 255)'
+					ctx.linewidth = 2
+					ctx.beginPath()
+					ctx.moveTo(previousPoint.x, previousPoint.y)
+					ctx.lineTo(currentPoint.x, currentPoint.y)
+					ctx.stroke()
+					ctx.closePath()
+					previousPoint.x = currentPoint.x
+					previousPoint.y = currentPoint.y
+					console.log('line drawn', currentPoint.x)
+				//}
          }
          console.log('chart drawn', canvas)
-    // linesAcross
     
-    // text bottom & text right
+    // text bottom
+	
+	  }
     }
 }
