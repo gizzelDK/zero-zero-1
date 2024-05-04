@@ -4,7 +4,7 @@ html {
 }
 .content-container {
 	display: grid;
-	grid-template-columns: 810px 410px 310px;
+	grid-template-columns: 800px 400px;
     grid-gap: 5px;
 }
 h1 {
@@ -16,9 +16,38 @@ canvas {
 }
 #results {
 	background: #333;
-	grid-area: results;
+	width: 400px;
 }
 form {
 	background: #222;
 	width: 400px;
+}
+.neon{
+    display: inline-block;
+    text-decoration: none;
+    border: hotpink 0.125em solid;
+    padding: 0.25em 1em;
+    color: hotpink;
+    background: rgba(0, 0, 0, 0);
+    border-radius: 0.25em;
+
+    text-shadow: 0 0 0.45em currentColor, 0 0 0.125em rgba(255, 255, 255, 30);
+    box-shadow: inset 0 0 1em 0 hotpink, 0 0 1em 0 hotpink;
+    position: relative;
+}
+@media only screen and (max-width: 1200px) {
+  .content-container {
+	grid-template-columns: 800px;
+  }
+  #calc-container{
+	  position: absolute;
+	  bottom: 20px;
+	  left: 20px;
+  }
+  #canvas-container {
+    width: 100%;
+  }
+	#calc-container{
+	  width: 100%;
+  }
 }
